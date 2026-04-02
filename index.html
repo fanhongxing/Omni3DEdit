@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Omni3DEdit: A Unified 3D Editing Benchmark with Region Annotations</title>
+    <meta name="description" content="Omni3DEdit is a unified benchmark for instruction-guided 3D editing with explicit edited-region annotations, containing 128,906 paired source-target 3D assets spanning five diverse edit families.">
+    <meta name="keywords" content="3D editing, dataset, benchmark, instruction following, edit locality, edited-region annotation, native 3D generation">
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="Omni3DEdit: A Unified 3D Editing Benchmark with Region Annotations">
+    <meta property="og:description" content="128,906 paired 3D assets with edited-region annotations for instruction-guided 3D editing evaluation.">
+    <meta property="og:image" content="static/images/hero_banner.png">
+    <meta property="og:type" content="website">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Omni3DEdit">
+    <meta name="twitter:description" content="A Unified 3D Editing Benchmark with Region Annotations">
+    <meta name="twitter:image" content="static/images/hero_banner.png">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <!-- Academicons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+
+    <link rel="stylesheet" href="static/css/style.css">
+</head>
+<body>
+    <!-- Animated Background -->
+    <div class="bg-animation">
+        <div class="bg-orb bg-orb-1"></div>
+        <div class="bg-orb bg-orb-2"></div>
+        <div class="bg-orb bg-orb-3"></div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <a href="#" class="nav-logo">
+                <span class="logo-icon">◆</span>
+                Omni3DEdit
+            </a>
+            <div class="nav-links">
+                <a href="#abstract">Abstract</a>
+                <a href="#dataset">Dataset</a>
+                <a href="#benchmark">Benchmark</a>
+                <a href="#results">Results</a>
+                <a href="#bibtex">BibTeX</a>
+            </div>
+            <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="hero" id="hero">
+        <div class="hero-content">
+            <div class="hero-badge animate-fade-in">
+                <span class="badge-dot"></span>
+                ACM Multimedia 2026 — Dataset Track
+            </div>
+            <h1 class="hero-title animate-fade-in-up">
+                <span class="title-accent">Omni3DEdit</span>
+                <span class="title-sub">A Unified 3D Editing Benchmark with Region Annotations</span>
+            </h1>
+
+            <div class="hero-authors animate-fade-in-up delay-1">
+                <div class="author-list">
+                    <span class="author">Hongxing Fan</span>
+                    <span class="author">Haotian Lu</span>
+                    <span class="author">Rui Chen</span>
+                    <span class="author">Weibin Yun</span>
+                    <span class="author">Zehuan Huang</span>
+                    <span class="author-corresponding">Lu Sheng<sup>✉</sup></span>
+                </div>
+                <div class="affiliation">Beihang University</div>
+            </div>
+
+            <div class="hero-links animate-fade-in-up delay-2">
+                <a href="#" class="btn btn-primary" id="btn-paper">
+                    <i class="fa-solid fa-file-pdf"></i>
+                    Paper
+                </a>
+                <a href="#" class="btn btn-secondary" id="btn-arxiv">
+                    <i class="ai ai-arxiv"></i>
+                    arXiv
+                </a>
+                <a href="#" class="btn btn-secondary" id="btn-github">
+                    <i class="fa-brands fa-github"></i>
+                    Code
+                </a>
+                <a href="#" class="btn btn-secondary" id="btn-dataset">
+                    <i class="fa-solid fa-database"></i>
+                    Dataset
+                </a>
+            </div>
+
+            <div class="hero-stats animate-fade-in-up delay-3">
+                <div class="stat-item">
+                    <div class="stat-number" data-target="128906">0</div>
+                    <div class="stat-label">Editing Pairs</div>
+                </div>
+                <div class="stat-divider"></div>
+                <div class="stat-item">
+                    <div class="stat-number" data-target="5">0</div>
+                    <div class="stat-label">Edit Families</div>
+                </div>
+                <div class="stat-divider"></div>
+                <div class="stat-item">
+                    <div class="stat-number" data-target="500">0</div>
+                    <div class="stat-label">Curated Test Pairs</div>
+                </div>
+                <div class="stat-divider"></div>
+                <div class="stat-item">
+                    <div class="stat-number" data-target="4">0</div>
+                    <div class="stat-label">Metric Groups</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="hero-image animate-fade-in delay-2">
+            <img src="static/images/hero_banner.png" alt="Omni3DEdit overview showing source and edited 3D objects with region annotations" loading="eager">
+        </div>
+    </header>
+
+    <!-- Abstract Section -->
+    <section class="section" id="abstract">
+        <div class="container">
+            <div class="section-header animate-on-scroll">
+                <span class="section-tag">Overview</span>
+                <h2 class="section-title">Abstract</h2>
+            </div>
+            <div class="abstract-card glass-card animate-on-scroll">
+                <div class="abstract-icon">
+                    <i class="fa-solid fa-quote-left"></i>
+                </div>
+                <p class="abstract-text">
+                    Instruction-guided 3D editing has recently progressed from optimization-based pipelines to native 3D foundation models. However, existing benchmarks rarely provide explicit annotations of edited regions or standardized evaluation protocols. It therefore remains difficult to systematically assess <em>where</em> an edit occurs, whether the intended transformation is faithfully realized, and how well unedited content is preserved.
+                </p>
+                <p class="abstract-text">
+                    We present <strong>Omni3DEdit</strong>, a unified benchmark for instruction-guided 3D editing with explicit edited-region annotations. Omni3DEdit contains <strong>128,906</strong> paired source–target 3D assets spanning five subsets that cover pose changes, rigid part addition and removal, articulated joint-state changes, region-targeted generative modifications, and material edits. Each sample provides a source asset, a target asset, a natural-language instruction, an edited-region annotation, lightweight edit metadata, and provenance information.
+                </p>
+                <p class="abstract-text">
+                    The benchmark is standardized into a common GLB-based representation and supports object-centric evaluation of instruction faithfulness, preservation outside the edited region, edit locality, and subset-specific validity. We further provide a practical benchmark protocol with strong off-the-shelf baselines and locality-aware metrics.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Dataset Section -->
+    <section class="section section-dark" id="dataset">
+        <div class="container">
+            <div class="section-header animate-on-scroll">
+                <span class="section-tag">Data</span>
+                <h2 class="section-title">Dataset</h2>
+                <p class="section-desc">Five diverse edit families with explicit edited-region annotations</p>
+            </div>
+
+            <!-- Subset Cards -->
+            <div class="subset-grid animate-on-scroll">
+                <div class="subset-card glass-card" data-color="cyan">
+                    <div class="subset-icon">
+                        <i class="fa-solid fa-person-running"></i>
+                    </div>
+                    <h3 class="subset-title">Pose</h3>
+                    <div class="subset-count">23,648 pairs</div>
+                    <p class="subset-desc">Pose changes derived from animated or rigged assets in Objaverse. Representative frames selected via pairwise deformation maximization.</p>
+                    <div class="subset-source">
+                        <span class="source-tag">Objaverse</span>
+                    </div>
+                </div>
+
+                <div class="subset-card glass-card" data-color="purple">
+                    <div class="subset-icon">
+                        <i class="fa-solid fa-puzzle-piece"></i>
+                    </div>
+                    <h3 class="subset-title">Structure</h3>
+                    <div class="subset-count">40,000 pairs</div>
+                    <p class="subset-desc">Programmatically constructed part addition/deletion pairs from hierarchical part annotations. Bidirectional edits with exact region annotation.</p>
+                    <div class="subset-source">
+                        <span class="source-tag">PartNet</span>
+                    </div>
+                </div>
+
+                <div class="subset-card glass-card" data-color="orange">
+                    <div class="subset-icon">
+                        <i class="fa-solid fa-gear"></i>
+                    </div>
+                    <h3 class="subset-title">Articulation</h3>
+                    <div class="subset-count">6,875 pairs</div>
+                    <p class="subset-desc">Kinematic state changes by modifying URDF joint parameters. Edited region captures the volumetric sweep of articulating components.</p>
+                    <div class="subset-source">
+                        <span class="source-tag">PartNet-Mobility</span>
+                    </div>
+                </div>
+
+                <div class="subset-card glass-card" data-color="green">
+                    <div class="subset-icon">
+                        <i class="fa-solid fa-wand-magic-sparkles"></i>
+                    </div>
+                    <h3 class="subset-title">Part-Edit</h3>
+                    <div class="subset-count">26,407 pairs</div>
+                    <p class="subset-desc">Part-targeted local modifications via VoxHammer. Diverse instructions and realistic free-form edits with explicit region isolation.</p>
+                    <div class="subset-source">
+                        <span class="source-tag">PartNet</span>
+                        <span class="source-tag">VoxHammer</span>
+                    </div>
+                </div>
+
+                <div class="subset-card glass-card" data-color="gold">
+                    <div class="subset-icon">
+                        <i class="fa-solid fa-palette"></i>
+                    </div>
+                    <h3 class="subset-title">Material</h3>
+                    <div class="subset-count">31,976 pairs</div>
+                    <p class="subset-desc">Appearance-only edits modifying texture or PBR material while preserving geometry. Atomic single-part material changes.</p>
+                    <div class="subset-source">
+                        <span class="source-tag">3DCoMPaT++</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Pipeline Image -->
+            <div class="pipeline-section animate-on-scroll">
+                <h3 class="subsection-title">
+                    <i class="fa-solid fa-diagram-project"></i>
+                    Standardization Pipeline
+                </h3>
+                <div class="pipeline-image glass-card">
+                    <img src="static/images/pipeline_overview.png" alt="Omni3DEdit data standardization pipeline from heterogeneous sources to unified GLB representation" loading="lazy">
+                </div>
+                <p class="pipeline-desc">All assets are converted into a unified GLB-based representation with standardized coordinate conventions, mesh normalization, multi-view rendering, and quality control.</p>
+            </div>
+
+            <!-- Schema Table -->
+            <div class="schema-section animate-on-scroll">
+                <h3 class="subsection-title">
+                    <i class="fa-solid fa-table"></i>
+                    Unified Annotation Schema
+                </h3>
+                <div class="table-wrapper glass-card">
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>Field</th>
+                                <th>Description</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><code>sample_id</code></td>
+                                <td>Unique sample identifier</td>
+                            </tr>
+                            <tr>
+                                <td><code>source_asset</code>, <code>target_asset</code></td>
+                                <td>File paths or identifiers for source and target GLB models</td>
+                            </tr>
+                            <tr>
+                                <td><code>instruction</code></td>
+                                <td>Natural-language edit instruction</td>
+                            </tr>
+                            <tr>
+                                <td><code>edited_region</code></td>
+                                <td>Mesh-space edited region and projected view masks for locality / preservation evaluation</td>
+                            </tr>
+                            <tr>
+                                <td><code>edit_operation</code></td>
+                                <td>Edit operation type (add, remove, open, rotate, deform, recolor, restyle, …)</td>
+                            </tr>
+                            <tr>
+                                <td><code>category</code></td>
+                                <td>Object category or asset group</td>
+                            </tr>
+                            <tr>
+                                <td><code>provenance</code></td>
+                                <td>Source dataset, generation pipeline, redistribution status, and licensing metadata</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Benchmark Section -->
+    <section class="section" id="benchmark">
+        <div class="container">
+            <div class="section-header animate-on-scroll">
+                <span class="section-tag">Evaluation</span>
+                <h2 class="section-title">Benchmark Protocol</h2>
+                <p class="section-desc">Region-aware evaluation along four complementary dimensions</p>
+            </div>
+
+            <div class="metrics-grid animate-on-scroll">
+                <div class="metric-card glass-card">
+                    <div class="metric-icon metric-icon-1">
+                        <i class="fa-solid fa-bullseye"></i>
+                    </div>
+                    <h3>Instruction Faithfulness</h3>
+                    <p>CLIP-T between multi-view renderings of the edited prediction and the input instruction. DINO-I or CLIP-I similarity when ground-truth target is available.</p>
+                    <div class="metric-tags">
+                        <span class="metric-tag">CLIP-T ↑</span>
+                        <span class="metric-tag">DINO-I ↑</span>
+                        <span class="metric-tag">CLIP-I ↑</span>
+                    </div>
+                </div>
+
+                <div class="metric-card glass-card">
+                    <div class="metric-icon metric-icon-2">
+                        <i class="fa-solid fa-shield-halved"></i>
+                    </div>
+                    <h3>Preservation</h3>
+                    <p>Geometry and render metrics on the complement of the edited region: preserved-region Chamfer Distance, masked PSNR, SSIM, and LPIPS.</p>
+                    <div class="metric-tags">
+                        <span class="metric-tag">CD ↓</span>
+                        <span class="metric-tag">mPSNR ↑</span>
+                        <span class="metric-tag">mSSIM ↑</span>
+                        <span class="metric-tag">mLPIPS ↓</span>
+                    </div>
+                </div>
+
+                <div class="metric-card glass-card">
+                    <div class="metric-icon metric-icon-3">
+                        <i class="fa-solid fa-crosshairs"></i>
+                    </div>
+                    <h3>Edit Locality</h3>
+                    <p>Compare predicted change support with annotated edited region via binary change maps. Region-level precision, recall, and F1.</p>
+                    <div class="metric-tags">
+                        <span class="metric-tag">Precision ↑</span>
+                        <span class="metric-tag">Recall ↑</span>
+                        <span class="metric-tag">Region-F1 ↑</span>
+                    </div>
+                </div>
+
+                <div class="metric-card glass-card">
+                    <div class="metric-icon metric-icon-4">
+                        <i class="fa-solid fa-check-double"></i>
+                    </div>
+                    <h3>Subset-Specific Validity</h3>
+                    <p>Preservation and locality metrics depend only on the non-edited region. The benchmark supports both text-guided and image-conditioned evaluation.</p>
+                    <div class="metric-tags">
+                        <span class="metric-tag">Text-guided</span>
+                        <span class="metric-tag">Image-conditioned</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Results Section -->
+    <section class="section section-dark" id="results">
+        <div class="container">
+            <div class="section-header animate-on-scroll">
+                <span class="section-tag">Experiments</span>
+                <h2 class="section-title">Results</h2>
+                <p class="section-desc">Baselines evaluated on the official test split of 500 human-verified pairs</p>
+            </div>
+
+            <!-- Main Results Table -->
+            <div class="results-table-section animate-on-scroll">
+                <h3 class="subsection-title">
+                    <i class="fa-solid fa-chart-bar"></i>
+                    Main Benchmark Results
+                </h3>
+                <div class="table-wrapper glass-card">
+                    <table class="data-table results-table">
+                        <thead>
+                            <tr>
+                                <th>Method</th>
+                                <th>CLIP-T ↑</th>
+                                <th>DINO-I ↑</th>
+                                <th>Preserve CD ↓</th>
+                                <th>mPSNR ↑</th>
+                                <th>mSSIM ↑</th>
+                                <th>mLPIPS ↓</th>
+                                <th>Region-F1 ↑</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="method-name">Source Copy</td>
+                                <td>—</td>
+                                <td>—</td>
+                                <td>—</td>
+                                <td>—</td>
+                                <td>—</td>
+                                <td>—</td>
+                                <td>—</td>
+                            </tr>
+                            <tr>
+                                <td class="method-name">Native 3D Editing</td>
+                                <td>—</td>
+                                <td>—</td>
+                                <td>—</td>
+                                <td>—</td>
+                                <td>—</td>
+                                <td>—</td>
+                                <td>—</td>
+                            </tr>
+                            <tr>
+                                <td class="method-name">VoxHammer</td>
+                                <td>—</td>
+                                <td>—</td>
+                                <td>—</td>
+                                <td>—</td>
+                                <td>—</td>
+                                <td>—</td>
+                                <td>—</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <p class="table-note">
+                    <i class="fa-solid fa-circle-info"></i>
+                    Results will be updated upon paper publication. Different methods fail in measurably different ways, confirming that the proposed metric suite captures complementary aspects of editing quality.
+                </p>
+            </div>
+
+            <!-- Qualitative Image -->
+            <div class="qualitative-section animate-on-scroll">
+                <h3 class="subsection-title">
+                    <i class="fa-solid fa-images"></i>
+                    Qualitative Comparison
+                </h3>
+                <div class="qualitative-image glass-card">
+                    <img src="static/images/subset_icons.png" alt="Five edit families: Pose, Structure, Articulation, Part-Edit, Material" loading="lazy">
+                </div>
+                <p class="pipeline-desc">Representative examples from each edit family: the visualizations confirm that edited-region annotations correspond to semantically meaningful changes across all five edit types.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- BibTeX Section -->
+    <section class="section" id="bibtex">
+        <div class="container">
+            <div class="section-header animate-on-scroll">
+                <span class="section-tag">Citation</span>
+                <h2 class="section-title">BibTeX</h2>
+            </div>
+            <div class="bibtex-card glass-card animate-on-scroll">
+                <div class="bibtex-header">
+                    <span class="bibtex-label">
+                        <i class="fa-solid fa-code"></i>
+                        Citation
+                    </span>
+                    <button class="copy-btn" id="copyBibtex" aria-label="Copy BibTeX">
+                        <i class="fa-regular fa-copy"></i>
+                        <span>Copy</span>
+                    </button>
+                </div>
+                <pre class="bibtex-code"><code id="bibtexCode">@inproceedings{fan2026omni3dedit,
+  title     = {Omni3DEdit: A Unified 3D Editing Benchmark 
+               with Region Annotations},
+  author    = {Fan, Hongxing and Lu, Haotian and Chen, Rui 
+               and Yun, Weibin and Huang, Zehuan 
+               and Sheng, Lu},
+  booktitle = {Proceedings of the ACM International 
+               Conference on Multimedia},
+  year      = {2026}
+}</code></pre>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <span class="logo-icon">◆</span>
+                    Omni3DEdit
+                </div>
+                <p class="footer-text">
+                    This page template is inspired by the <a href="https://nerfies.github.io/" target="_blank" rel="noopener">Nerfies</a> project page.
+                </p>
+                <p class="footer-text footer-license">
+                    Licensed under a <a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noopener">Creative Commons Attribution-ShareAlike 4.0</a> International License.
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="static/js/main.js"></script>
+</body>
+</html>
