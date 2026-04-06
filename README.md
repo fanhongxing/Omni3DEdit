@@ -128,6 +128,40 @@ Run the following scripts under `data_processing/partnet_mobility/` and
 `data_processing/partnet_voxhammer/` directly, and install dependencies from
 the root `requirements.txt`.
 
+### Material subset usage
+
+The `material` subset in this repository currently provides metadata and pair
+definitions, and is mainly consumed during evaluation.
+
+Available files under `data_processing/material/`:
+
+- `data/pair.csv`: source-target instruction pairs
+- `data/comp_coarse_0.json`, `data/comp_coarse_0_1.json`, `data/comp_coarse_0_r.json`: style jsons
+- `metadata/`: class hierarchy and split metadata
+- `loaders/utils3D/`: GLTF/material helper utilities
+
+Practical workflow:
+
+1. Prepare the benchmark dataset root with a `material/` folder containing
+   `metadata.csv` and test split CSV (same format as evaluator expects).
+2. Prepare `--material_base` pointing to 3DCoMPaT processed GLBs.
+3. Run evaluation with `--datasets material` (or include it in multi-dataset runs).
+
+Minimal example:
+
+```bash
+python evaluation/evaluate.py \
+  --mode inference \
+  --data_root /path/to/train_data_raw \
+  --pred_root /path/to/train_inference_img_glb \
+  --material_base /path/to/3DCoMPaT_Processed \
+  --output_dir ./results_material \
+  --datasets material
+```
+
+Note: this repository does not yet include a standalone end-to-end material
+construction script analogous to `data_processing/partnet/process_partnet.py`.
+
 ## Rendering Conditional Images
 
 Use `render/render_script.py` to batch render unique GLBs referenced by benchmark pairs:
