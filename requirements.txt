@@ -1,0 +1,15 @@
+numpy
+pandas
+tqdm
+Pillow
+requests
+trimesh
+pyrender
+scikit-image
+open-clip-torch
+transformers
+lpips
+torch
+google-generativeai
+PyOpenGL
+pyglet
