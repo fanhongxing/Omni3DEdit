@@ -1,0 +1,7 @@
+numpy
+pandas
+tqdm
+Pillow
+sapien
+google-generativeai
+requests
