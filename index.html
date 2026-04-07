@@ -39,7 +39,7 @@
                 <a href="#dataset">Dataset</a>
                 <a href="#method">Method</a>
                 <a href="#benchmark">Benchmark</a>
-                <a href="#results">Results</a>
+                <a href="#showcase">Showcase</a>
                 <a href="#resources">Resources</a>
                 <a href="#bibtex">BibTeX</a>
             </div>
@@ -212,28 +212,159 @@
                     </article>
                 </div>
 
+                <div class="section-head reveal" style="margin-top:20px;">
+                    <h2>Text-only vs. Image-conditioned Evaluation</h2>
+                    <p class="note">Official test split comparison. Image conditioning substantially improves faithfulness while preservation and locality remain comparable.</p>
+                </div>
+
+                <div class="table-shell reveal">
+                    <table aria-label="Text-only vs image-conditioned evaluation on the official test split">
+                        <thead>
+                            <tr>
+                                <th>Method</th>
+                                <th>Condition</th>
+                                <th>CLIP-T &uarr;</th>
+                                <th>DINO-I &uarr;</th>
+                                <th>Preserve CD &darr;</th>
+                                <th>mLPIPS &darr;</th>
+                                <th>Region-F1 &uarr;</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>VoxHammer [Li et al., 2025]</td>
+                                <td>Text-only</td>
+                                <td>0.249</td>
+                                <td>0.700</td>
+                                <td>0.224</td>
+                                <td>0.293</td>
+                                <td>0.130</td>
+                            </tr>
+                            <tr>
+                                <td>VoxHammer [Li et al., 2025]</td>
+                                <td>Image-cond.</td>
+                                <td>0.250</td>
+                                <td>0.662</td>
+                                <td>0.221</td>
+                                <td>0.202</td>
+                                <td>0.321</td>
+                            </tr>
+                            <tr>
+                                <td>Native3DEditing [Cai et al., 2025]</td>
+                                <td>Text-only</td>
+                                <td>0.253</td>
+                                <td>0.622</td>
+                                <td>0.970</td>
+                                <td>0.283</td>
+                                <td>0.165</td>
+                            </tr>
+                            <tr>
+                                <td>3DEditverse [3DEditFormer]</td>
+                                <td>Image-cond.</td>
+                                <td>0.336</td>
+                                <td>0.667</td>
+                                <td>0.807</td>
+                                <td>0.245</td>
+                                <td>0.176</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </section>
 
-        <section class="section section-alt" id="results">
+        <section class="section section-alt" id="showcase">
             <div class="container">
                 <div class="section-head reveal">
-                    <p class="kicker">Results</p>
-                    <h2>Release Plan</h2>
+                    <p class="kicker">Showcase</p>
+                    <h2>GLB Examples By Category</h2>
+                    <p class="note">Each category shows one sample model and its instruction from <code>asset/1.txt</code>.</p>
                 </div>
 
-                <div class="overview-grid" style="margin-top:12px;">
-                    <article class="card reveal">
-                        <h3>Public Page Policy</h3>
-                        <p>This page presents benchmark design, task setup, and qualitative demonstrations without exposing internal quantitative tables.</p>
+                <div class="showcase-grid">
+                    <article class="showcase-card reveal">
+                        <p class="showcase-type">animation</p>
+                        <div class="showcase-pair-grid">
+                            <div class="showcase-viewer-block">
+                                <p class="viewer-label">Source</p>
+                                <model-viewer src="asset/0b5b51b578ea43f7b0429db362e46267_frame_0000.glb" camera-controls auto-rotate shadow-intensity="1"></model-viewer>
+                                <p class="showcase-file">0b5b51b578ea43f7b0429db362e46267_frame_0000.glb</p>
+                            </div>
+                            <div class="showcase-viewer-block">
+                                <p class="viewer-label">Target</p>
+                                <model-viewer src="asset/0b5b51b578ea43f7b0429db362e46267_frame_0088.glb" camera-controls auto-rotate shadow-intensity="1"></model-viewer>
+                                <p class="showcase-file">0b5b51b578ea43f7b0429db362e46267_frame_0088.glb</p>
+                            </div>
+                        </div>
+                        <p class="showcase-instruction">Instruction: Extend both arms forward and slightly outward</p>
                     </article>
-                    <article class="card reveal">
-                        <h3>Controlled Release</h3>
-                        <p>Detailed scores and leaderboard entries can be shared later in a controlled release according to your publication timeline.</p>
+
+                    <article class="showcase-card reveal">
+                        <p class="showcase-type">material</p>
+                        <div class="showcase-pair-grid">
+                            <div class="showcase-viewer-block">
+                                <p class="viewer-label">Source</p>
+                                <model-viewer src="asset/textured_mesh_04_14c__0.glb" camera-controls auto-rotate shadow-intensity="1"></model-viewer>
+                                <p class="showcase-file">textured_mesh_04_14c__0.glb</p>
+                            </div>
+                            <div class="showcase-viewer-block">
+                                <p class="viewer-label">Target</p>
+                                <model-viewer src="asset/textured_mesh_04_14c__0_1.glb" camera-controls auto-rotate shadow-intensity="1"></model-viewer>
+                                <p class="showcase-file">textured_mesh_04_14c__0_1.glb</p>
+                            </div>
+                        </div>
+                        <p class="showcase-instruction">Instruction: Apply Blue-grey striped matte woven fabric to the pillow</p>
                     </article>
-                    <article class="card reveal">
-                        <h3>Reproducibility</h3>
-                        <p>Protocol descriptions and code links remain available so others can understand and reproduce the evaluation process.</p>
+
+                    <article class="showcase-card reveal">
+                        <p class="showcase-type">partnet_mobility</p>
+                        <div class="showcase-pair-grid">
+                            <div class="showcase-viewer-block">
+                                <p class="viewer-label">Source</p>
+                                <model-viewer src="asset/103761_mobility.glb" camera-controls auto-rotate shadow-intensity="1"></model-viewer>
+                                <p class="showcase-file">103761_mobility.glb</p>
+                            </div>
+                            <div class="showcase-viewer-block">
+                                <p class="viewer-label">Target</p>
+                                <model-viewer src="asset/103761_mobility_mod_1.glb" camera-controls auto-rotate shadow-intensity="1"></model-viewer>
+                                <p class="showcase-file">103761_mobility_mod_1.glb</p>
+                            </div>
+                        </div>
+                        <p class="showcase-instruction">Instruction: Rotate the lid by approximately 90 degrees clockwise.</p>
+                    </article>
+
+                    <article class="showcase-card reveal">
+                        <p class="showcase-type">partnet</p>
+                        <div class="showcase-pair-grid">
+                            <div class="showcase-viewer-block">
+                                <p class="viewer-label">Source</p>
+                                <model-viewer src="asset/278_without_original-1_source.glb" camera-controls auto-rotate shadow-intensity="1"></model-viewer>
+                                <p class="showcase-file">278_without_original-1_source.glb</p>
+                            </div>
+                            <div class="showcase-viewer-block">
+                                <p class="viewer-label">Target</p>
+                                <model-viewer src="asset/278_complete_target.glb" camera-controls auto-rotate shadow-intensity="1"></model-viewer>
+                                <p class="showcase-file">278_complete_target.glb</p>
+                            </div>
+                        </div>
+                        <p class="showcase-instruction">Instruction: Implant the missing back_surface_vertical_bar to make the Chair Back complete</p>
+                    </article>
+
+                    <article class="showcase-card reveal">
+                        <p class="showcase-type">partnet_voxhammer</p>
+                        <div class="showcase-pair-grid">
+                            <div class="showcase-viewer-block">
+                                <p class="viewer-label">Source</p>
+                                <model-viewer src="asset/30009.glb" camera-controls auto-rotate shadow-intensity="1"></model-viewer>
+                                <p class="showcase-file">30009.glb</p>
+                            </div>
+                            <div class="showcase-viewer-block">
+                                <p class="viewer-label">Target</p>
+                                <model-viewer src="asset/30009_modified_original-2.glb" camera-controls auto-rotate shadow-intensity="1"></model-viewer>
+                                <p class="showcase-file">30009_modified_original-2.glb</p>
+                            </div>
+                        </div>
+                        <p class="showcase-instruction">Instruction: Make the tabletop_connector become a larger, circular tabletop.</p>
                     </article>
                 </div>
             </div>
@@ -295,6 +426,7 @@
         </div>
     </footer>
 
+    <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
     <script src="static/js/main.js"></script>
 </body>
 </html>

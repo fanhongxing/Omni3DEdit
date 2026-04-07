@@ -97,4 +97,5 @@ document.addEventListener('DOMContentLoaded', () => {
             }, 1400);
         });
     }
+
 });
