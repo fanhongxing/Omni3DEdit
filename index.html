@@ -107,15 +107,15 @@
                 <div class="overview-grid">
                     <article class="card reveal">
                         <h3>Problem</h3>
-                        <p>Most 3D editing benchmarks evaluate whether an edit looks plausible, but they do not explicitly check where the model changed geometry or appearance.</p>
+                        <p>Most benchmarks only judge realism, not <strong class="key-emph">where to edit</strong>.</p>
                     </article>
                     <article class="card reveal">
                         <h3>Core Idea</h3>
-                        <p>Omni3DEdit provides edited-region annotations so evaluation can measure faithfulness, preservation, and locality in a unified protocol.</p>
+                        <p>Omni3DEdit adds <strong class="key-emph">region annotations</strong> to score faithfulness, preservation, and locality together.</p>
                     </article>
                     <article class="card reveal">
                         <h3>Outcome</h3>
-                        <p>A practical benchmark suite with standardized assets, region-aware metrics, and strong baselines for instruction-guided 3D editing.</p>
+                        <p>A practical <strong class="key-emph">region-aware benchmark</strong> with standardized assets, metrics, and strong baselines.</p>
                     </article>
                 </div>
                 <div class="abstract-block reveal">
@@ -278,7 +278,6 @@
                 <div class="section-head reveal">
                     <p class="kicker">Showcase</p>
                     <h2>GLB Examples By Category</h2>
-                    <p class="note">Each category shows one sample model and its instruction from <code>asset/1.txt</code>.</p>
                 </div>
 
                 <div class="showcase-grid">
@@ -355,16 +354,16 @@
                         <div class="showcase-pair-grid">
                             <div class="showcase-viewer-block">
                                 <p class="viewer-label">Source</p>
-                                <model-viewer src="asset/16582.glb" camera-controls auto-rotate shadow-intensity="1"></model-viewer>
-                                <p class="showcase-file">16582.glb</p>
+                                <model-viewer src="asset/30299.glb" camera-controls auto-rotate shadow-intensity="1"></model-viewer>
+                                <p class="showcase-file">30299.glb</p>
                             </div>
                             <div class="showcase-viewer-block">
                                 <p class="viewer-label">Target</p>
-                                <model-viewer src="asset/16582_modified_new-2.glb" camera-controls auto-rotate shadow-intensity="1"></model-viewer>
-                                <p class="showcase-file">16582_modified_new-2.glb</p>
+                                <model-viewer src="asset/30299_modified_original-3.glb" camera-controls auto-rotate shadow-intensity="1"></model-viewer>
+                                <p class="showcase-file">30299_modified_original-3.glb</p>
                             </div>
                         </div>
-                        <p class="showcase-instruction">Instruction: Change the texture of the lampshade.</p>
+                        <p class="showcase-instruction">Instruction: Modify the configuration of the table legs.</p>
                     </article>
                 </div>
             </div>

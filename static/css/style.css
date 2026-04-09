@@ -317,6 +317,13 @@ figcaption {
     font-size: 0.95rem;
 }
 
+.key-emph {
+    color: var(--ink);
+    font-weight: 800;
+    background: linear-gradient(transparent 58%, rgba(0, 168, 150, 0.22) 58%);
+    padding: 0 2px;
+}
+
 .abstract-block {
     margin-top: 12px;
     background: #fff;
