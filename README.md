@@ -6,7 +6,7 @@
 [![Paper](https://img.shields.io/badge/Paper-PDF-red?style=for-the-badge&logo=adobeacrobatreader)](https://arxiv.org/abs/xxxx.xxxxx)
 
 > Hongxing Fan, Haotian Lu, Rui Chen, Weibin Yun, Zehuan Huang, Lu Sheng  
-> Beihang University | ACM Multimedia 2026
+> Beihang University
 
 ## Abstract
 
@@ -250,7 +250,6 @@ For each dataset, results are saved under:
 @inproceedings{fan2026omni3dedit,
   title     = {Omni3DEdit: A Unified 3D Editing Benchmark with Region Annotations},
   author    = {Fan, Hongxing and Lu, Haotian and Chen, Rui and Yun, Weibin and Huang, Zehuan and Sheng, Lu},
-  booktitle = {Proceedings of the ACM International Conference on Multimedia},
   year      = {2026}
 }
 ```
