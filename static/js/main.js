@@ -1,26 +1,35 @@
 document.addEventListener('DOMContentLoaded', () => {
-    const applyBlenderLikePreset = () => {
-        document.querySelectorAll('model-viewer').forEach((viewer) => {
-            const src = viewer.getAttribute('src') || '';
-            if (!src.endsWith('30009.glb')) return;
-
-            // Blender viewport often looks "closed" because it effectively behaves closer to double-sided preview.
-            viewer.setAttribute('double-sided', '');
-
-            // Use a neutral IBL and slightly higher exposure to reduce the dark/patchy look on untextured meshes.
-            if (!viewer.hasAttribute('environment-image')) {
-                viewer.setAttribute('environment-image', 'neutral');
-            }
-            if (!viewer.hasAttribute('exposure')) {
-                viewer.setAttribute('exposure', '1.12');
-            }
-            if (!viewer.hasAttribute('shadow-intensity')) {
-                viewer.setAttribute('shadow-intensity', '0.55');
+    const applyDoubleSided = (viewer) => {
+        const scene = viewer.model;
+        if (!scene) return;
+        scene.traverse((node) => {
+            if (node.isMesh) {
+                const mats = Array.isArray(node.material) ? node.material : [node.material];
+                mats.forEach((mat) => {
+                    if (mat) mat.side = 2; // THREE.DoubleSide = 2
+                });
             }
         });
     };
 
-    applyBlenderLikePreset();
+    document.querySelectorAll('model-viewer').forEach((viewer) => {
+        const src = viewer.getAttribute('src') || '';
+        if (!src.endsWith('30009.glb')) return;
+
+        // Use a neutral IBL and slightly higher exposure to reduce the dark/patchy look on untextured meshes.
+        if (!viewer.hasAttribute('environment-image')) {
+            viewer.setAttribute('environment-image', 'neutral');
+        }
+        if (!viewer.hasAttribute('exposure')) {
+            viewer.setAttribute('exposure', '1.12');
+        }
+        if (!viewer.hasAttribute('shadow-intensity')) {
+            viewer.setAttribute('shadow-intensity', '0.55');
+        }
+
+        // Apply double-sided rendering after model loads (double-sided is not a valid model-viewer attribute).
+        viewer.addEventListener('load', () => applyDoubleSided(viewer));
+    });
 
     const navbar = document.getElementById('navbar');
     const navToggle = document.getElementById('navToggle');
