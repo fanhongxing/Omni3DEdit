@@ -1,4 +1,27 @@
 document.addEventListener('DOMContentLoaded', () => {
+    const applyBlenderLikePreset = () => {
+        document.querySelectorAll('model-viewer').forEach((viewer) => {
+            const src = viewer.getAttribute('src') || '';
+            if (!src.endsWith('30009.glb')) return;
+
+            // Blender viewport often looks "closed" because it effectively behaves closer to double-sided preview.
+            viewer.setAttribute('double-sided', '');
+
+            // Use a neutral IBL and slightly higher exposure to reduce the dark/patchy look on untextured meshes.
+            if (!viewer.hasAttribute('environment-image')) {
+                viewer.setAttribute('environment-image', 'neutral');
+            }
+            if (!viewer.hasAttribute('exposure')) {
+                viewer.setAttribute('exposure', '1.12');
+            }
+            if (!viewer.hasAttribute('shadow-intensity')) {
+                viewer.setAttribute('shadow-intensity', '0.55');
+            }
+        });
+    };
+
+    applyBlenderLikePreset();
+
     const navbar = document.getElementById('navbar');
     const navToggle = document.getElementById('navToggle');
     const navLinks = document.getElementById('navLinks');
