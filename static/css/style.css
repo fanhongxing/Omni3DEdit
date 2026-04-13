@@ -539,6 +539,10 @@ th {
     gap: 10px;
 }
 
+.showcase-pair-grid-mask {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
 .showcase-viewer-block {
     background: #fcfeff;
     border: 1px solid #e8edf2;

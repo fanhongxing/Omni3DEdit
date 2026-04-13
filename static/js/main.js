@@ -1,4 +1,16 @@
 document.addEventListener('DOMContentLoaded', () => {
+    const applyUnifiedShowcaseCamera = (viewer) => {
+        // Models are already normalized in dataset preprocessing, so we keep their native scale.
+        // A fixed camera setup makes source/target examples visually comparable.
+        viewer.setAttribute('camera-target', '0m 0m 0m');
+        viewer.setAttribute('camera-orbit', '35deg 70deg 2.2m');
+        viewer.setAttribute('field-of-view', '30deg');
+    };
+
+    document.querySelectorAll('#showcase model-viewer').forEach((viewer) => {
+        applyUnifiedShowcaseCamera(viewer);
+    });
+
     const applyDoubleSided = (viewer) => {
         const scene = viewer.model;
         if (!scene) return;
