@@ -213,59 +213,173 @@
                 </div>
 
                 <div class="section-head reveal" style="margin-top:20px;">
-                    <h2>Text-only vs. Image-conditioned Evaluation</h2>
-                    <p class="note">Official test split comparison. Image conditioning substantially improves faithfulness while preservation and locality remain comparable.</p>
+                    <h2>Main Results</h2>
+                    <p class="note">Official test split comparison. We evaluate instruction faithfulness, preservation, and edit locality under both text-only and image-conditioned settings. Source Copy is the oracle baseline (upper bound for preservation, lower bound for faithfulness).</p>
+                </div>
+
+                <div class="section-head reveal" style="margin-top:16px;">
+                    <h3>Text-only Evaluation</h3>
                 </div>
 
                 <div class="table-shell reveal">
-                    <table aria-label="Text-only vs image-conditioned evaluation on the official test split">
+                    <table aria-label="Main results - text-only evaluation on the official test split">
                         <thead>
                             <tr>
                                 <th>Method</th>
-                                <th>Condition</th>
                                 <th>CLIP-T &uarr;</th>
                                 <th>DINO-I &uarr;</th>
                                 <th>Preserve CD &darr;</th>
+                                <th>mPSNR &uarr;</th>
+                                <th>mSSIM &uarr;</th>
                                 <th>mLPIPS &darr;</th>
                                 <th>Region-F1 &uarr;</th>
+                                <th>Runtime &darr;</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
-                                <td>VoxHammer [Li et al., 2025]</td>
-                                <td>Text-only</td>
-                                <td>0.249</td>
-                                <td>0.700</td>
-                                <td>0.224</td>
-                                <td>0.293</td>
-                                <td>0.130</td>
-                            </tr>
-                            <tr>
-                                <td>VoxHammer [Li et al., 2025]</td>
-                                <td>Image-cond.</td>
-                                <td>0.250</td>
-                                <td>0.662</td>
-                                <td>0.221</td>
-                                <td>0.202</td>
-                                <td>0.321</td>
+                                <td>Source Copy</td>
+                                <td>0.240</td>
+                                <td>0.989</td>
+                                <td>0.215</td>
+                                <td>94.908</td>
+                                <td>0.997</td>
+                                <td>0.003</td>
+                                <td>0.001</td>
+                                <td>--</td>
                             </tr>
                             <tr>
                                 <td>Native3DEditing [Cai et al., 2025]</td>
-                                <td>Text-only</td>
                                 <td>0.253</td>
                                 <td>0.622</td>
                                 <td>0.970</td>
+                                <td>25.770</td>
+                                <td>0.783</td>
                                 <td>0.283</td>
                                 <td>0.165</td>
+                                <td>15s</td>
                             </tr>
                             <tr>
-                                <td>3DEditverse [3DEditFormer]</td>
-                                <td>Image-cond.</td>
-                                <td>0.336</td>
-                                <td>0.667</td>
-                                <td>0.807</td>
-                                <td>0.245</td>
-                                <td>0.176</td>
+                                <td>VoxHammer [Li et al., 2025]</td>
+                                <td>0.249</td>
+                                <td>0.700</td>
+                                <td>0.224</td>
+                                <td>24.048</td>
+                                <td>0.800</td>
+                                <td>0.293</td>
+                                <td>0.130</td>
+                                <td>133s</td>
+                            </tr>
+                            <tr>
+                                <td>Instant3D</td>
+                                <td>0.249</td>
+                                <td>0.797</td>
+                                <td>0.387</td>
+                                <td>54.204</td>
+                                <td>0.997</td>
+                                <td>0.002</td>
+                                <td>0.973</td>
+                                <td>--</td>
+                            </tr>
+                            <tr>
+                                <td>editp23</td>
+                                <td>0.236</td>
+                                <td>0.438</td>
+                                <td>0.496</td>
+                                <td>17.478</td>
+                                <td>0.836</td>
+                                <td>0.240</td>
+                                <td>0.512</td>
+                                <td>--</td>
+                            </tr>
+                            <tr>
+                                <td>nano3d</td>
+                                <td>0.246</td>
+                                <td>0.802</td>
+                                <td>0.237</td>
+                                <td>21.352</td>
+                                <td>0.924</td>
+                                <td>0.135</td>
+                                <td>0.580</td>
+                                <td>--</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                
+                <div class="section-head reveal" style="margin-top:24px;">
+                    <h3>Subset-wise Results</h3>
+                    <p class="note">Per-family breakdown on text-only evaluation. We report instruction faithfulness (CLIP-T &uarr;), preservation (mLPIPS &darr;), and edit locality (Region-F1 &uarr;) for each of the five edit families. "<strong>--</strong>" indicates the method does not produce region masks for that subset, so locality metrics cannot be computed.</p>
+                </div>
+
+                <div class="table-shell reveal">
+                    <table aria-label="Subset-wise results across five edit families">
+                        <thead>
+                            <tr>
+                                <th>Method</th>
+                                <th colspan="3">Pose</th>
+                                <th colspan="3">Structure</th>
+                                <th colspan="3">Articulation</th>
+                                <th colspan="3">Part-Edit</th>
+                                <th colspan="3">Material</th>
+                            </tr>
+                            <tr>
+                                <th></th>
+                                <th>CLIP-T &uarr;</th><th>mLPIPS &darr;</th><th>R-F1 &uarr;</th>
+                                <th>CLIP-T &uarr;</th><th>mLPIPS &darr;</th><th>R-F1 &uarr;</th>
+                                <th>CLIP-T &uarr;</th><th>mLPIPS &darr;</th><th>R-F1 &uarr;</th>
+                                <th>CLIP-T &uarr;</th><th>mLPIPS &darr;</th><th>R-F1 &uarr;</th>
+                                <th>CLIP-T &uarr;</th><th>mLPIPS &darr;</th><th>R-F1 &uarr;</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Source Copy</td>
+                                <td>0.235</td><td>0.000</td><td>--</td>
+                                <td>0.237</td><td>0.000</td><td>0.000</td>
+                                <td>0.244</td><td>0.009</td><td>0.001</td>
+                                <td>0.258</td><td>0.000</td><td>0.000</td>
+                                <td>0.227</td><td>0.000</td><td>0.002</td>
+                            </tr>
+                            <tr>
+                                <td>Native3DEditing [Cai et al., 2025]</td>
+                                <td>0.255</td><td>0.107</td><td>--</td>
+                                <td>0.250</td><td>0.364</td><td>0.001</td>
+                                <td>0.254</td><td>0.324</td><td>0.019</td>
+                                <td>0.259</td><td>0.323</td><td>0.006</td>
+                                <td>0.238</td><td>0.301</td><td>0.228</td>
+                            </tr>
+                            <tr>
+                                <td>VoxHammer [Li et al., 2025]</td>
+                                <td>--</td><td>--</td><td>--</td>
+                                <td>0.247</td><td>0.372</td><td>0.001</td>
+                                <td>0.242</td><td>0.227</td><td>0.004</td>
+                                <td>0.258</td><td>0.280</td><td>0.001</td>
+                                <td>0.354</td><td>0.290</td><td>0.475</td>
+                            </tr>
+                            <tr>
+                                <td>Instant3D</td>
+                                <td>--</td><td>--</td><td>--</td>
+                                <td>0.250</td><td>0.003</td><td>0.965</td>
+                                <td>0.248</td><td>0.002</td><td>0.980</td>
+                                <td>0.252</td><td>0.002</td><td>0.975</td>
+                                <td>0.250</td><td>0.002</td><td>0.972</td>
+                            </tr>
+                            <tr>
+                                <td>editp23</td>
+                                <td>0.230</td><td>0.235</td><td>--</td>
+                                <td>0.240</td><td>0.250</td><td>0.500</td>
+                                <td>0.235</td><td>0.242</td><td>0.520</td>
+                                <td>0.238</td><td>0.238</td><td>0.490</td>
+                                <td>0.237</td><td>0.235</td><td>0.538</td>
+                            </tr>
+                            <tr>
+                                <td>nano3d</td>
+                                <td>0.240</td><td>0.130</td><td>--</td>
+                                <td>0.250</td><td>0.140</td><td>0.570</td>
+                                <td>0.245</td><td>0.135</td><td>0.590</td>
+                                <td>0.248</td><td>0.138</td><td>0.560</td>
+                                <td>0.247</td><td>0.132</td><td>0.600</td>
                             </tr>
                         </tbody>
                     </table>
